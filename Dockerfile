@@ -1,22 +1,23 @@
-#Устанавливаем зависимости
-FROM node:20.11-alpine as dependencies
+FROM node:20.9 as dependencies
 WORKDIR /app
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
-#Билдим приложение
-#Кэширование зависимостей — если файлы в проекте изменились,
-#но package.json остался неизменным, то стейдж с установкой зависимостей повторно не выполняется, что экономит время.
-FROM node:20.11-alpine as builder
+FROM node:20.9 as builder
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build:production
 
-#Стейдж запуска
-FROM node:20.11-alpine as runner
+FROM node:20.9 as runner
 WORKDIR /app
 ENV NODE_ENV production
-COPY --from=builder /app/ ./
+# If you are using a custom next.config.mjs file, uncomment this line.
+COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/app ./app
+COPY --from=builder /app/.storybook ./.storybook
 EXPOSE 3000
 CMD ["npm", "start"]
