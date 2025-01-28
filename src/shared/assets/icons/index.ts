@@ -1,0 +1,6 @@
+export { CreditCard } from './components/CreditCard'
+export { ImageOutline } from './components/ImageOutline'
+export { Person } from './components/Person'
+export { RussiaFlag } from './components/RussiaFlag'
+export { TrendingUp } from './components/TrendingUp'
+export { UnitedKingdomFlag } from './components/UnitedKingdomFlag'
