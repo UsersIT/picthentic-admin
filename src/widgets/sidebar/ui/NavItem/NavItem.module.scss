@@ -1,0 +1,57 @@
+@use "src/_app/styles/mixins" as *;
+
+.navItem {
+  display: flex;
+  width: 100%;
+}
+
+.link {
+  position: relative;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-primary);
+  text-decoration: none;
+
+  transition: color 0.3s;
+
+  &[data-active="true"] {
+    color: var(--color-accent-500);
+  }
+
+  &:hover {
+    color: var(--color-accent-100);
+  }
+
+  &:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--color-accent-700);
+  }
+}
+
+.label {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+  white-space: nowrap;
+}
+
+@include tablet {
+  .navItem {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .link {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-medium);
+  }
+}

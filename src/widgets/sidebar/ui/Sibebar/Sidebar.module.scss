@@ -1,0 +1,38 @@
+@use "src/_app/styles/mixins" as *;
+
+.sidebar {
+  position: fixed;
+  top: var(--header-height);
+  bottom: 0;
+  left: 0;
+
+  width: var(--sidebar-width);
+  padding: 68px 0 32px 56px;
+  border-right: 1px solid var(--color-dark-300);
+
+  background-color: var(--color-bg-primary);
+
+  transition: width 0.3s;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: space-between;
+
+  height: 100%;
+  padding: 4px 0 4px 4px;
+}
+
+@include tablet {
+  .sidebar {
+    padding: 68px 0 0;
+  }
+}
