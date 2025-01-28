@@ -2,11 +2,13 @@ import type { Metadata } from 'next'
 
 import React from 'react'
 
+import { Header } from '@/widgets/header'
 import { Inter } from 'next/font/google'
 
-import '@picthentic/ui-kit/dist/style.css'
-
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
+
+import '@picthentic/ui-kit/dist/style.css'
+import '../_app/styles/globals.scss'
 
 export const metadata: Metadata = {
   description: 'Admin panel',
@@ -20,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={'en'}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
