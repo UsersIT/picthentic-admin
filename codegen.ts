@@ -16,10 +16,9 @@ const config: CodegenConfig = {
         extension: '.generated.tsx',
       },
     },
-    'src/shared/api/generated/types.generated.ts': { plugins: ['typescript'] },
-  },
-  hooks: {
-    afterAllFileWrite: `eslint --fix src/shared/api/generated/types.generated.ts`,
+    'src/shared/api/generated/types.generated.ts': {
+      plugins: ['typescript-operations', 'typescript-react-apollo'],
+    },
   },
   ignoreNoDocuments: true,
   schema: URL_SCHEMA,

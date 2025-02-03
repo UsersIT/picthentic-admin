@@ -10,6 +10,8 @@ import { Button, Card, TextField, Typography } from '@picthentic/ui-kit'
 import { useRouter } from 'next/navigation'
 import NProgress from 'nprogress'
 
+import s from './LoginForm.module.scss'
+
 export const LoginForm = () => {
   const [, setAuthToken] = useSessionStorage<string>('authToken')
   const [, setIsLoggedIn] = useSessionStorage<boolean>('isLoggedIn')
@@ -56,10 +58,11 @@ export const LoginForm = () => {
   }
 
   return (
-    <Card>
-      <Typography variant={'h1'}>{`Sign In`}</Typography>
+    <Card className={s.card}>
+      <Typography className={s.title} variant={'h1'}>{`Sign In`}</Typography>
       <div>
         <TextField
+          className={s.input}
           errorMessage={errorMessage}
           label={'email'}
           onChangeText={e => onChangeTextHandler(e, 'email')}
@@ -75,7 +78,7 @@ export const LoginForm = () => {
           type={'password'}
           value={signInForm.password}
         />
-        <Button fullWidth onClick={onSubmitHandler} type={'submit'}>
+        <Button className={s.button} fullWidth onClick={onSubmitHandler} type={'submit'}>
           <Typography variant={'h3'}>Sign In</Typography>
         </Button>
       </div>
