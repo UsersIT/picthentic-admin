@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import React from 'react'
 
+import ClientLayout from '@/shared/providers/сlientLayout/ClientLayout'
 import { Header } from '@/widgets/header'
 import { Inter } from 'next/font/google'
 
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang={'en'}>
       <body className={inter.className}>
         <Header />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )

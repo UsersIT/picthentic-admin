@@ -1,6 +1,7 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { useIsLoggedIn } from '@/shared/hooks/useIsLoggedIn'
 import { Sidebar } from '@/widgets/sidebar'
 import { ScrollArea, ScrollBar } from '@picthentic/ui-kit'
 
@@ -11,9 +12,16 @@ export default function PrivateLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { isLoggedIn } = useIsLoggedIn()
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <div className={s.layout}>
-      <Sidebar />
+      {isClient && isLoggedIn && <Sidebar />}
       <ScrollArea className={s.scrollArea}>
         {children}
         <ScrollBar orientation={'horizontal'} />
