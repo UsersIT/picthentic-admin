@@ -78,7 +78,7 @@ export const LoginForm = () => {
           type={'password'}
           value={signInForm.password}
         />
-        <Button className={s.button} fullWidth onClick={onSubmitHandler} type={'submit'}>
+        <Button className={s.signInBtn} fullWidth onClick={onSubmitHandler} type={'submit'}>
           <Typography variant={'h3'}>Sign In</Typography>
         </Button>
       </div>
