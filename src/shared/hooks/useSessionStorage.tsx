@@ -1,4 +1,4 @@
-import { TUseLocalStorage } from './useLocalStorage'
+export type TUseLocalStorage<T> = [() => T | undefined, (value: T) => void, () => void]
 
 export function useSessionStorage<T>(key: string): TUseLocalStorage<T> {
   const isBrowser = typeof window !== 'undefined'
@@ -8,26 +8,26 @@ export function useSessionStorage<T>(key: string): TUseLocalStorage<T> {
       try {
         window.sessionStorage.setItem(key, JSON.stringify(value))
       } catch (error) {
-        new Error(error)
+        throw new Error(error instanceof Error ? error.message : String(error))
       }
     }
   }
 
   const getItem = (): T | undefined => {
-    if (isBrowser) {
-      try {
-        const item = window.sessionStorage.getItem(key)
+    if (!isBrowser) {
+      return undefined
+    }
 
-        if (item === null) {
-          return undefined
-        }
+    try {
+      const item = window.sessionStorage.getItem(key)
 
-        return JSON.parse(item)
-      } catch (error) {
-        new Error(error)
-
+      if (item === null) {
         return undefined
       }
+
+      return JSON.parse(item)
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : String(error))
     }
   }
 
@@ -36,7 +36,7 @@ export function useSessionStorage<T>(key: string): TUseLocalStorage<T> {
       try {
         window.sessionStorage.removeItem(key)
       } catch (error) {
-        new Error(error)
+        throw new Error(error instanceof Error ? error.message : String(error))
       }
     }
   }

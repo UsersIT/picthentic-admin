@@ -64,17 +64,17 @@ export const LoginForm = () => {
         <TextField
           className={s.input}
           errorMessage={errorMessage}
+          isRequired
           label={'email'}
-          onChangeText={e => onChangeTextHandler(e, 'email')}
-          requiredField
+          onChange={e => onChangeTextHandler(e.target.value, 'email')} // Исправлено
           type={'default'}
           value={signInForm.email}
         />
         <TextField
           errorMessage={errorMessage}
+          isRequired
           label={'password'}
-          onChangeText={e => onChangeTextHandler(e, 'password')}
-          requiredField
+          onChange={e => onChangeTextHandler(e.target.value, 'password')} // Исправлено
           type={'password'}
           value={signInForm.password}
         />
