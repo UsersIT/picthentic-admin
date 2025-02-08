@@ -38,7 +38,7 @@ export const LoginForm = () => {
             password: signInForm.password,
           },
         })
-        const isLoggedIn = response.data?.loginAdmin.logged ?? false // Установите значение по умолчанию
+        const isLoggedIn = response.data?.loginAdmin.logged ?? false
 
         if (isLoggedIn) {
           const base64 = btoa(`${signInForm.email}:${signInForm.password}`)
@@ -66,7 +66,7 @@ export const LoginForm = () => {
           errorMessage={errorMessage}
           isRequired
           label={'email'}
-          onChange={e => onChangeTextHandler(e.target.value, 'email')} // Исправлено
+          onChange={e => onChangeTextHandler(e.target.value, 'email')}
           type={'default'}
           value={signInForm.email}
         />
@@ -74,7 +74,7 @@ export const LoginForm = () => {
           errorMessage={errorMessage}
           isRequired
           label={'password'}
-          onChange={e => onChangeTextHandler(e.target.value, 'password')} // Исправлено
+          onChange={e => onChangeTextHandler(e.target.value, 'password')}
           type={'password'}
           value={signInForm.password}
         />

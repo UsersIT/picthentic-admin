@@ -5,7 +5,7 @@ import { routes } from '@/shared/constants/routes'
 import { useIsLoggedIn } from '@/shared/hooks/useIsLoggedIn'
 import { useRouter } from 'next/navigation'
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const { isLoggedIn } = useIsLoggedIn()
   const router = useRouter()
 
@@ -17,5 +17,3 @@ const LoginPage = () => {
 
   return <LoginForm />
 }
-
-export default LoginPage
