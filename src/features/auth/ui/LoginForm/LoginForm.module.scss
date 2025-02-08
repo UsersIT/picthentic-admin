@@ -1,0 +1,34 @@
+.card {
+  justify-content: center;
+  padding-top: 36px;
+  margin: 108px auto;
+  width: min(378px, 100%);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.input, .signInBtn {
+  margin: 36px 0 18px;
+}
+
+@media screen and (width <= 576px) {
+  .card {
+    padding: 17px 15px;
+    background-color: unset;
+    border: none;
+    width: 100%;
+  }
+
+  .input, .signInBtn {
+    font-size: var(--font-size-s);
+  }
+
+  .title {
+    font-size: var(--font-size-l);
+    line-height: var(--line-height-m);
+  }
+
+}
